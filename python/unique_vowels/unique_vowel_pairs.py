@@ -3,6 +3,8 @@
 
 inp = "the quick brown fox jumps over the lazy dog"
 
+vws = {i: 0 for i in 'aeiouy'}
+
 
 def keep_vws(s):
     cnts = {}

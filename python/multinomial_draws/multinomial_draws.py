@@ -1,4 +1,5 @@
 from collections import Counter
+import numpy as np 
 
 probs = [0.17, 0.4, 0.32, .11]
 events = 4

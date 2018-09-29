@@ -1,5 +1,3 @@
-from collections import Counter
-
 import numpy as np
 
 # df = pd.read_csv("./")
@@ -7,7 +5,7 @@ import numpy as np
 # DOCSTRING
 
 # Find the first repeated character in a string.
-# String is s
+# input string is s
 
 
 def firstrep(s):
@@ -52,92 +50,6 @@ def filterlist(inpt):
 
 print(filterlist(ANP))
 
-vws = {i: 0 for i in 'aeiouy'}
-
-# from a given line, find out how many vowels each word has then create a pair of words
-# each word having its unique set of vowels (no repeats)
-
-"""/**
-  * 1. Write a function that will take a sentence and count the number of letters in each word which are vowels (a, e, i, o, u, y).
-  * 
-  * Example:
-  * Input: "the quick brown fox jumps over the lazy dog"
-  * Expected result: Array[(String, Int)] = Array((the,1), (quick,2), (brown,1), (fox,1), (jumps,1), (over,2), (the,1), (lazy,2), (dog,1))
-  */
-"""
-
-inp = "the quick brown fox jumps over the lazy dog"
-
-
-def keep_vws(s):
-    cnts = {}
-    for w in s.lower().split():
-        d = set()
-        for c in w:
-            if c in vws:
-                d.add(c)
-        cnts[w] = (len(d), d)
-    # print(cnts)
-    return cnts
-
-
-"""
-/**
-  * 2. Now write a function that will take these word counts as input and output the top K pairs of words that together have the most *unique* vowels.
-  *    It should skip mirrored pairs and self-pairs, and have no duplicates.
-  * 
-  * Example for K=3:  Seq((over,quick,4), (lazy,quick,4), (lazy,over,4))
-*/
-
-"""
-
-
-def makepairs(inp):
-    op = keep_vws(inp)
-    # Faster convergence with sorted list
-    op = sorted(op.items(), key=lambda x: x[1], reverse=True)
-    k = 0
-    for i, item in enumerate(op):
-        # print(item[1], i, item)
-        try:
-            # item 0 is set of vowels
-            # op is dictionary being iterated with enumerator key
-            if item[1] != op[i + 1][1][1] and k < 3:
-                print((op[i][0], op[i + 1][0], (op[i][1][0] + op[i + 1][1][0])))
-                k += 1
-        except IndexError:
-            print(".")
-
-
-makepairs(inp)
-
-
-# 
-# Draw samples from multinomial distribution using a probability vector
-# and number of trials to be performed
-# report number of counts for each events
-
-probs = [0.17, 0.4, 0.32, .11]
-events = 4
-
-
-def rand_dist(n, probz):
-    emp = np.zeros(n, dtype='int32')  # init empty results array
-    vec = np.random.uniform(0, 1, n)
-    probz = np.cumsum(probz)
-    for i, v in enumerate(vec):
-        for ix, p in enumerate(probz):
-            if v > probz[ix] and v < probz[(ix + 1)]:
-                # print((ix + 1), probz[ix], v ,probz[(ix + 1)])
-                emp[i] = ix + 1
-    emp = emp + 1  # for 0 labels
-    return emp
-
-
-obj = rand_dist(1000, probs)
-print("\n", Counter(obj))
-# print("", np.unique(obj, return_counts=True))
-
 
 # open a file, count number of words,
 # number of lines and frequency of each word
@@ -163,40 +75,6 @@ def get_fstat(f):
 # op = get_fstat('/home/raz/Projects/practice/feed.txt')
 # print("\n", op[:3])   # Display top 3
 
-
-def isincreasing(seq):
-    count = 0
-
-    def isgood(ls):
-        try:
-            if len(ls) < 2:
-                True
-            for i in range(len(ls)):
-                if ls[i] < ls[(i + 1)]:
-                    pass
-                else:
-                    return (i + 1)
-        except:
-            pass
-        return True
-
-    isinc = isgood(seq)  # first run
-
-    while count < 2:
-        t1 = seq[:isinc] + seq[isinc + 1:]  # check for both n and n+1 removed
-        t2 = seq[:isinc - 1] + seq[isinc:]
-        count += 1
-        isinc = what = isgood(t1)  # recheck
-        if what is True:
-            return True
-        isinc = what = isgood(t2)
-        if what is True:
-            return True
-    print("False")
-    return False
-
-
-seq = [10, 1, 3, 4, 3]
 
 
 def firstNotRepeatingCharacter(s):
