@@ -21,36 +21,6 @@ def firstrep(s):
 
 firstrep("hellads")
 
-
-# Filter a list of lists, such that only the highest earning surname will be returned.
-
-ANP = [
-    ["Steve", "Peterson", 101229],
-    ["Mary", "Peterson", 111029],
-    ["Mark", "Williams", 99118]
-]
-
-
-def filterlist(inpt):
-    dict = {}
-    op = []
-    for i in inpt:
-        try:
-            if dict[i[1]] < i[2]:  # check with an added key
-                dict[i[1]] = i[2]
-        except:
-            dict[i[1]] = i[2]  # add if key does not exist already
-
-    for i in inpt:
-        if i[2] == dict[i[1]]:
-            op.append(i)
-            print("ai caramba")
-    return op
-
-
-print(filterlist(ANP))
-
-
 # open a file, count number of words,
 # number of lines and frequency of each word
 
