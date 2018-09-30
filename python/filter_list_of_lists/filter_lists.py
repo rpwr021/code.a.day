@@ -14,7 +14,7 @@ def filterlist(inpt):
         try:
             if xdict[i[1]] < i[2]:  # check with an added key
                 xdict[i[1]] = i[2]
-        except KeyError as _: 
+        except KeyError as _:
             xdict[i[1]] = i[2]  # add if key does not exist already
 
     for i in inpt:
@@ -25,3 +25,7 @@ def filterlist(inpt):
 
 
 print(filterlist(ANP))
+
+# On second thought, a more pythonic way
+
+print(ANP.sort(key=lambda x: x[2], reverse=True))
